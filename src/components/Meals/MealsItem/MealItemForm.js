@@ -1,10 +1,30 @@
+import { useState } from "react";
 import Input from "../../UI/Input";
 import classes from "./MealItemForm.module.css";
+import { useStore } from "../../../Store/CartProvide";
 
 const MealItemForm = (props) => {
+  const store = useStore();
+  // const amountInputRef = useRef();
+  const [count, setCount] = useState();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+  };
+
+  const updateItem = () => {
+    store.addItem({ id: props.id, count });
+  };
+
+  const getVal = (value) => {
+    setCount(value);
+  };
+
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={submitHandler}>
       <Input
+        getVal={getVal}
+        // ref={amountInputRef}
         label="Amount"
         input={{
           id: "amount_" + props.id,
@@ -15,7 +35,7 @@ const MealItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button>+ Add</button>
+      <button onClick={updateItem}>+ Add</button>
     </form>
   );
 };
