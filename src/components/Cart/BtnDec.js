@@ -3,10 +3,11 @@ import { useStore } from "../../Store/CartProvide";
 
 const BtnDecc = (props) => {
   const store = useStore();
-  // const [inc, setInc] = useState(0);
   function decftn() {
     console.log(props.count);
-    if (props.count >= 1) {
+    if (props.count < 2) {
+      store.removeItem({ id: props.item_id, price: props.price });
+    } else {
       store.addItem({ id: props.item_id, count: -1 });
     }
   }

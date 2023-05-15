@@ -6,9 +6,7 @@ import { useEffect, useState } from "react";
 const HeaderCartButton = (props) => {
   const store = useStore();
   const [numberofItems, setNumberofItems] = useState(store.items.length);
-  // const numofCartItems = store.items.reduce((curNumber, item) => {
-  //   return curNumber + item.amount;
-  // }, 0);
+
   useEffect(() => {
     setNumberofItems(store.items.length);
   }, [store.items.length]);

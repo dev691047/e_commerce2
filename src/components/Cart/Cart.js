@@ -20,8 +20,16 @@ const Cart = (props) => {
               <>
                 <h4>{`${filtered_item[0].name}  [x${item.count}]`}</h4>
                 <p>price: {filtered_item[0].price}</p>
-                <BtnInc item_id={item.id} count={item.count} />
-                <BtnDec item_id={item.id} count={item.count} />
+                <BtnInc
+                  style={{ marginRight: "3px" }}
+                  item_id={item.id}
+                  count={item.count}
+                />
+                <BtnDec
+                  item_id={item.id}
+                  price={filtered_item[0].price}
+                  count={item.count}
+                />
               </>
             )}
           </li>

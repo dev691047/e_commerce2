@@ -35,18 +35,18 @@ const DUMMY_MEALS = [
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
-    let findIn = state.items.findIndex((val) => val.id === action.item.id);
+    let findInd = state.items.findIndex((val) => val.id === action.item.id);
     let updatedItems,
       totalItems = state.items;
-    if (findIn >= 0) {
-      let it = state.items[findIn];
+    if (findInd >= 0) {
+      let it = state.items[findInd];
       if (it.count) {
         it.count = parseInt(parseInt(it.count) + parseInt(action.item.count));
       } else it.count = parseInt(action.item.count);
-      totalItems[findIn] = it;
+      totalItems[findInd] = it;
       updatedItems = totalItems;
     } else updatedItems = [...totalItems, action.item];
-    // const totalItems = updatedItems.length;
+
     let updatedTotalAmount = 0;
     // we have id so we need to identify the name by id
     // so we need to find the price of maens from dummy array by using id
@@ -65,7 +65,16 @@ const cartReducer = (state, action) => {
       items: updatedItems,
       totalAmount: updatedTotalAmount.toFixed(0),
     };
-  } else {
+  } else if (action.type === "REMOVE") {
+    let Removed_Items = state.items.filter((val) => val.id !== action.item.id);
+    let total_amount = state.totalAmount - action.item.price;
+    if (total_amount < 1) {
+      total_amount = 0;
+    }
+    return {
+      items: Removed_Items,
+      totalAmount: total_amount,
+    };
   }
   return defaultCartState;
 };
@@ -81,8 +90,8 @@ export const CartProvider = (props) => {
   const addItemToCartHandler = (item) => {
     dispatchCartAction({ type: "ADD", item: item });
   };
-  const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE", id: id });
+  const removeItemFromCartHandler = (item) => {
+    dispatchCartAction({ type: "REMOVE", item: item });
   };
 
   const cartContext = {

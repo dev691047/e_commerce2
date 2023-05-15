@@ -7,6 +7,10 @@ const BtnInc = (props) => {
   function incftn() {
     store.addItem({ id: props.item_id, count: 1 });
   }
-  return <button onClick={incftn}>+</button>;
+  return (
+    <button style={props.style} onClick={incftn}>
+      +
+    </button>
+  );
 };
 export default BtnInc;
