@@ -10,26 +10,30 @@ const DUMMY_MEALS = [
   {
     id: "m1",
     name: "Sushi",
-    description: "Finest fish and veggies",
+    // description: "Finest fish and veggies",
     price: 22.99,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
   },
   {
     id: "m2",
     name: "Schnitzel",
-    description: "A german specialty!",
+    // description: "A german specialty!",
     price: 16.5,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
   },
   {
     id: "m3",
     name: "Barbecue Burger",
-    description: "American, raw, meaty",
+    // description: "American, raw, meaty",
     price: 12.99,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
   {
     id: "m4",
     name: "Green Bowl",
-    description: "Healthy...and green...",
+    // description: "Healthy...and green...",
     price: 18.99,
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
 ];
 
@@ -63,7 +67,7 @@ const cartReducer = (state, action) => {
 
     return {
       items: updatedItems,
-      totalAmount: updatedTotalAmount.toFixed(0),
+      totalAmount: updatedTotalAmount.toFixed(1),
     };
   } else if (action.type === "REMOVE") {
     let Removed_Items = state.items.filter((val) => val.id !== action.item.id);
@@ -84,6 +88,7 @@ export const CartProvider = (props) => {
     cartReducer,
     defaultCartState
   );
+  console.log(props);
 
   // const [value, setValue] = useState("ritik");
 

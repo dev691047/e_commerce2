@@ -27,12 +27,26 @@
 .App-link {
   color: #61dafb;
 }
+footer {
+  text-align: center;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer div {
+  background-color: rgb(106, 106, 255);
+  height: 100px;
+  color: white;
+  font-size: 40px;
+  margin-top: 10px;
+  /* float: right; */
+  /* text-align: center; */
+}
+footer button {
+  color: white;
+  background-color: rgb(97, 97, 255);
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  /* margin-left: 50%; */
 }

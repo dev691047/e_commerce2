@@ -17,20 +17,32 @@ const Cart = (props) => {
         return (
           <li>
             {item.count > 0 && (
-              <>
-                <h4>{`${filtered_item[0].name}  [x${item.count}]`}</h4>
-                <p>price: {filtered_item[0].price}</p>
-                <BtnInc
-                  style={{ marginRight: "3px" }}
-                  item_id={item.id}
-                  count={item.count}
-                />
-                <BtnDec
-                  item_id={item.id}
-                  price={filtered_item[0].price}
-                  count={item.count}
-                />
-              </>
+              <div className={classes.item_layout}>
+                <div style={{ width: "80px" }}>
+                  <img
+                    className={classes.img}
+                    src={filtered_item[0].imageUrl}
+                    alt=""
+                  ></img>
+                  {`${filtered_item[0].name} `}
+                  <hr />
+                </div>
+
+                <div style={{ width: "50px" }}>{filtered_item[0].price}</div>
+                <div className={classes.quantity}>
+                  <span className={classes.count}>{item.count}</span>
+                  <BtnInc
+                    style={{ marginRight: "3px" }}
+                    item_id={item.id}
+                    count={item.count}
+                  />
+                  <BtnDec
+                    item_id={item.id}
+                    price={filtered_item[0].price}
+                    count={item.count}
+                  />
+                </div>
+              </div>
             )}
           </li>
         );
@@ -40,14 +52,30 @@ const Cart = (props) => {
 
   return (
     <Modal hideCartHandler={props.hideCartHandler}>
-      {cartItems}
-      {/* {console.log(store.items[0].count)} */}
-      <div className={classes.total}>
-        <span>Total amount</span>
+      <h3 style={{ fontSize: "25px", marginLeft: "40%" }}>Cart</h3>
+      <div className={classes.heading}>
+        <span>ITEM</span>
+        <span>PRICE</span>
+        <span>QUANTITY</span>
       </div>
+      <hr />
 
-      <div>{store.totalAmount}</div>
+      {cartItems}
 
+      <div className={classes.total}>
+        <span style={{ marginLeft: "80%" }}>Total</span>
+      </div>
+      <div
+        style={{
+          marginLeft: "81%",
+          marginTop: "-15px",
+          marginBottom: "10px",
+          fontWeight: "600",
+          Color: "blue",
+        }}
+      >
+        {store.totalAmount}
+      </div>
       <div className={classes.actions}>
         <button
           className={classes["button--alt"]}

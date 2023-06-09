@@ -1,20 +1,22 @@
 .form {
-  text-align: right;
+  /* border: 1px solid black; */
 }
 
 .form button {
+  display: inline;
   font: inherit;
   cursor: pointer;
-  background-color: #8a2b06;
-  border: 1px solid #8a2b06;
+  background-color: rgb(82, 82, 248);
+  border: 1px solid rgb(104, 104, 255);
   color: white;
   padding: 0.25rem 2rem;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   font-weight: bold;
+  box-shadow: 3px 3px 7px rgb(148, 148, 148);
 }
 
 .form button:hover,
 .form button:active {
-  background-color: #641e03;
-  border-color: #641e03;
+  background-color: #3123ff;
+  /* border-color: #641e03; */
 }

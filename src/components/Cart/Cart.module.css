@@ -4,8 +4,32 @@
   padding: 0;
   max-height: 20rem;
   overflow: auto;
+  color: rgb(78, 78, 78);
 }
 
+.heading {
+  display: flex;
+  justify-content: space-around;
+  color: rgb(88, 88, 255);
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+.item_layout {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-around;
+}
+.img {
+  width: 80px;
+  height: 80px;
+}
+.count {
+  border: 2px solid rgb(91, 91, 255);
+  padding: 0px 7px;
+  margin: 2px;
+  border-radius: 5px;
+}
 .total {
   display: flex;
   justify-content: space-between;
@@ -23,7 +47,7 @@
   font: inherit;
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid #8a2b06;
+  border: 1px solid #627fff;
   padding: 0.5rem 2rem;
   border-radius: 25px;
   margin-left: 1rem;
@@ -31,16 +55,16 @@
 
 .actions button:hover,
 .actions button:active {
-  background-color: #5a1a01;
+  background-color: rgb(78, 78, 255);
   border-color: #5a1a01;
   color: white;
 }
 
 .actions .button--alt {
-  color: #8a2b06;
+  color: #000000;
 }
 
 .actions .button {
-  background-color: #8a2b06;
+  background-color: #7c6dff;
   color: white;
 }

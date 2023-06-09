@@ -1,16 +1,20 @@
-import mealsImage from "../../assets/meals.jpg";
+import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
 const Header = (props) => {
   return (
     <>
       <header className={classes.header}>
-        <h1>ReactMeals</h1>
-        <HeaderCartButton showCart={props.showCartHandler} />
+        <div className={classes.nav}>
+          <Link to="/home">HOME</Link>
+          <Link to="/">STORE</Link>
+          <Link to="/about">ABOUT</Link>
+        </div>
+        <HeaderCartButton
+          className={classes.cart}
+          showCart={props.showCartHandler}
+        />
       </header>
-      <div className={classes["main-image"]}>
-        <img src={mealsImage} alt="" />
-      </div>
     </>
   );
 };

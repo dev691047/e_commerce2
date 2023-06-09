@@ -7,8 +7,11 @@
 
 .meals ul {
   list-style: none;
-  margin: 0;
+  margin-left: 70px;
   padding: 0;
+  display: grid;
+  grid-template-columns: 450px 450px;
+  /* grid-gap: 30px; */
 }
 
 @keyframes meals-appear {

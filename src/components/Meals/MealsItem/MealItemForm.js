@@ -23,8 +23,8 @@ const MealItemForm = (props) => {
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
+        className={classes.input1}
         getVal={getVal}
-        // ref={amountInputRef}
         label="Amount"
         input={{
           id: "amount_" + props.id,
@@ -35,7 +35,7 @@ const MealItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button onClick={updateItem}>+ Add</button>
+      <button onClick={updateItem}>Add</button>
     </form>
   );
 };
