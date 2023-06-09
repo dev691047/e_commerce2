@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./Header.module.css";
 import HeaderCartButton from "./HeaderCartButton";
 const Header = (props) => {
@@ -6,9 +6,9 @@ const Header = (props) => {
     <>
       <header className={classes.header}>
         <div className={classes.nav}>
-          <Link to="/home">HOME</Link>
-          <Link to="/">STORE</Link>
-          <Link to="/about">ABOUT</Link>
+          <NavLink to="/home">HOME</NavLink>
+          <NavLink to="/">STORE</NavLink>
+          <NavLink to="/about">ABOUT</NavLink>
         </div>
         <HeaderCartButton
           className={classes.cart}
