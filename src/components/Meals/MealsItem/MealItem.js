@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import classes from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
 
@@ -9,7 +10,10 @@ const MealItem = (props) => {
       <li className={classes.li}>
         <div>
           <h1>{props.name}</h1>
-          <img src={props.image} alt="" />
+          <Link to={`${props.id}`}>
+            {" "}
+            <img src={props.image} alt="" />
+          </Link>
           <div className={classes.price}>{price}</div>
         </div>
         <div>

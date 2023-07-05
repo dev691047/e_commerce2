@@ -1,33 +1,26 @@
-import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AboutPage from "./pages/AboutPage";
+import ProductListPage from "./pages/MealsListPage";
+import HomePage from "./pages/HomePage";
+import Error from "./pages/Error";
 import Header from "./components/Layout/Header";
-import Meals from "./components/Meals/Meals";
-import Cart from "./components/Cart/Cart";
-import { useState } from "react";
-import { CartProvider } from "./Store/CartProvide";
+import ProductDetails from "./pages/ProductDetails";
+import "./App.css";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Header />,
+    errorElement: <Error />,
+    children: [
+      { path: "/", element: <ProductListPage /> },
+      { path: "/about", element: <AboutPage /> },
+      { path: "/home", element: <HomePage /> },
+      { path: "/:productid", element: <ProductDetails /> },
+    ],
+  },
+]);
 
-function App() {
-  const [showCart, setShowCart] = useState(false);
-  const showCartHandler = () => {
-    setShowCart(true);
-  };
-
-  const hideCartHandler = () => {
-    setShowCart(false);
-  };
-
-  return (
-    <CartProvider>
-      {showCart && <Cart hideCartHandler={hideCartHandler} />}
-      <Header showCartHandler={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-      <footer>
-        <button onClick={showCartHandler}>Show Cart</button>
-        <div>The Generics</div>
-      </footer>
-    </CartProvider>
-  );
-}
-
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 export default App;

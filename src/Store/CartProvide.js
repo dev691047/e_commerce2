@@ -6,7 +6,7 @@ const defaultCartState = {
   totalAmount: 0,
 };
 
-const DUMMY_MEALS = [
+const DUMMY_Meals = [
   {
     id: "m1",
     name: "Sushi",
@@ -56,7 +56,7 @@ const cartReducer = (state, action) => {
     // so we need to find the price of maens from dummy array by using id
     for (let item of updatedItems) {
       let id = item.id;
-      let filtered_item = DUMMY_MEALS.filter((item) => {
+      let filtered_item = DUMMY_Meals.filter((item) => {
         return item.id === id;
       });
 
@@ -104,7 +104,7 @@ export const CartProvider = (props) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
-    meals: DUMMY_MEALS,
+    Meals: DUMMY_Meals,
   };
 
   return (

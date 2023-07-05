@@ -1,11 +1,11 @@
-.meals {
+.Meals {
   max-width: 60rem;
   width: 90%;
   margin: 2rem auto;
-  animation: meals-appear 1s ease-out forwards;
+  animation: Meals-appear 1s ease-out forwards;
 }
 
-.meals ul {
+.Meals ul {
   list-style: none;
   margin-left: 70px;
   padding: 0;
@@ -14,7 +14,7 @@
   /* grid-gap: 30px; */
 }
 
-@keyframes meals-appear {
+@keyframes Meals-appear {
   from {
     opacity: 0;
     transform: translateY(3rem);

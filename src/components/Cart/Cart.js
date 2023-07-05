@@ -11,7 +11,7 @@ const Cart = (props) => {
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {store.items.map((item) => {
-        let filtered_item = store.meals.filter((v) => v.id === item.id);
+        let filtered_item = store.Meals.filter((v) => v.id === item.id);
         console.log({ filtered_item });
 
         return (

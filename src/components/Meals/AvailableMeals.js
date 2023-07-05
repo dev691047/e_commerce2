@@ -6,10 +6,10 @@ import { useStore } from "../../Store/CartProvide";
 const AvailableMeals = () => {
   const store = useStore();
   return (
-    <section className={classes.meals}>
+    <section className={classes.Meals}>
       <Card>
         <ul className={classes.ul}>
-          {store.meals.map((meal) => (
+          {store.Meals.map((meal) => (
             <MealItem
               id={meal.id}
               key={meal.id}
