@@ -1,33 +1,23 @@
+import { Routes, Route } from "react-router-dom";
+import AboutPage from "./pages/AboutPage";
+import MealStorePage from "./pages/MealStorePage";
+import HomePage from "./pages/HomePage";
+import AuthPage from "./pages/AuthPage";
+
+import Layout from "./components/Layout/Layout";
 import "./App.css";
-import Header from "./components/Layout/Header";
-import Meals from "./components/Meals/Meals";
-import Cart from "./components/Cart/Cart";
-import { useState } from "react";
-import { CartProvider } from "./Store/CartProvide";
 
-function App() {
-  const [showCart, setShowCart] = useState(false);
-  const showCartHandler = () => {
-    setShowCart(true);
-  };
-
-  const hideCartHandler = () => {
-    setShowCart(false);
-  };
-
+const App = () => {
   return (
-    <CartProvider>
-      {showCart && <Cart hideCartHandler={hideCartHandler} />}
-      <Header showCartHandler={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-      <footer>
-        <button onClick={showCartHandler}>Show Cart</button>
-        <div>The Generics</div>
-      </footer>
-    </CartProvider>
+    <Layout>
+      <Routes>
+        <Route path="/" exact element={<HomePage />} />
+        <Route path="/store" element={<MealStorePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+      </Routes>
+    </Layout>
   );
-}
+};
 
 export default App;
