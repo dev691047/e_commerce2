@@ -85,6 +85,7 @@ const Header = (props) => {
           showCart={props.showCartHandler}
         />
       </header>
+      <Outlet />
     </>
   );
 };

@@ -7,7 +7,7 @@ import AuthPage from "./pages/AuthPage";
 import Layout from "./components/Layout/Layout";
 import "./App.css";
 
-const App = () => {
+const router = () => {
   return (
     <Layout>
       <Routes>
@@ -20,4 +20,7 @@ const App = () => {
   );
 };
 
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 export default App;

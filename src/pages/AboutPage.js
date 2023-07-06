@@ -35,7 +35,7 @@ const AboutPage = () => {
 
   return (
     <>
-      <form>
+      <form style={{ marginTop: "100px" }}>
         <input placeholder="name" value={name} onChange={changeN}></input>
         <input placeholder="email" value={email} onChange={changeE}></input>
         <input
