@@ -1,11 +1,8 @@
 .summary {
   text-align: center;
   width: 100%;
-  margin-top: 70px;
-  position: relative;
   height: 200px;
-  padding: 1rem;
-  background-color: rgb(129, 129, 129);
+
   color: white;
 }
 

@@ -12,7 +12,7 @@ const MealItem = (props) => {
           <h1>{props.name}</h1>
           <Link to={`${props.id}`}>
             {" "}
-            <img src={props.image} alt="" />
+            <img src={props.image} alt="" style={{ height: "250px" }} />
           </Link>
           <div className={classes.price}>{price}</div>
         </div>

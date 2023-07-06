@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from "react";
 import axios from "axios";
 import classes from "./AuthPage.module.css";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../Store_Auth/auth-context";
 
 const AuthPage = () => {
@@ -10,6 +10,7 @@ const AuthPage = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const useContx = useContext(AuthContext);
+  const navigate = useNavigate();
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
@@ -33,6 +34,7 @@ const AuthPage = () => {
 
         useContx.login(reslogin.data.idToken);
         localStorage.setItem("token", reslogin.data.idToken);
+        navigate("/store");
       } catch (e) {
         console.log(e);
         alert(e.response.data.error.message);
@@ -53,6 +55,7 @@ const AuthPage = () => {
         setSignupSuccess("signup successful");
         useContx.login(res.data.idToken);
         localStorage.setItem("token", res.data.idToken);
+        navigate("/store");
       } catch (e) {
         console.log(e.response.data.error.message);
         setSignupSuccess(e.response.data.error.message);

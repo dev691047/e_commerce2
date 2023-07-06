@@ -17,10 +17,7 @@ const Header = (props) => {
     <>
       <header className={classes.header}>
         <div className={classes.nav}>
-          <Link
-            style={{ paddingLeft: 13, textDecoration: "none", color: "white" }}
-            to="/"
-          >
+          <Link style={{ paddingLeft: 13, textDecoration: "none" }} to="/">
             HOME
           </Link>
 
@@ -29,7 +26,6 @@ const Header = (props) => {
               style={{
                 paddingLeft: 13,
                 textDecoration: "none",
-                color: "white",
               }}
               to="/auth"
             >
@@ -41,17 +37,13 @@ const Header = (props) => {
               style={{
                 paddingLeft: 13,
                 textDecoration: "none",
-                color: "white",
               }}
               to="/store"
             >
               STORE
             </Link>
           )}
-          <Link
-            style={{ paddingLeft: 13, textDecoration: "none", color: "white" }}
-            to="/about"
-          >
+          <Link style={{ paddingLeft: 13, textDecoration: "none" }} to="/about">
             ABOUT
           </Link>
           {!authCtx.isLoggedin && (
@@ -59,7 +51,6 @@ const Header = (props) => {
               style={{
                 paddingLeft: 13,
                 textDecoration: "none",
-                color: "white",
               }}
               to="/auth"
             >
@@ -71,7 +62,6 @@ const Header = (props) => {
               style={{
                 paddingLeft: 13,
                 textDecoration: "none",
-                color: "white",
               }}
               onClick={logoutHandler}
               to="/auth"
@@ -85,7 +75,6 @@ const Header = (props) => {
           showCart={props.showCartHandler}
         />
       </header>
-      <Outlet />
     </>
   );
 };
