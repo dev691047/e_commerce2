@@ -3,9 +3,11 @@ import axios from "axios";
 import classes from "./AuthPage.module.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Store_Auth/auth-context";
+import { useStore } from "../Store/CartProvide";
 
 const AuthPage = () => {
   const authCtx = useContext(AuthContext);
+  const store = useStore();
   const [isLogin, setIsLogin] = useState(true);
   const [signupSuccess, setSignupSuccess] = useState("");
   const emailInputRef = useRef();
@@ -21,7 +23,7 @@ const AuthPage = () => {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-
+    let id;
     if (isLogin) {
       try {
         const reslogin = await axios.post(
@@ -35,18 +37,7 @@ const AuthPage = () => {
 
         useContx.login(reslogin.data.idToken, reslogin.data.localId);
         localStorage.setItem("token", reslogin.data.idToken);
-        try {
-          const ress = await axios.get(
-            `https://crudcrud.com/api/336f4b1d4bf5406883689d6c9fc7865e/${authCtx.id}`
-          );
-          if (ress) {
-            console.log(ress);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-
-        // navigate("/store");
+        id = reslogin.data.localId;
       } catch (e) {
         console.log(e);
         alert(e.response.data.error.message);
@@ -63,11 +54,11 @@ const AuthPage = () => {
             returnSecureToken: true,
           }
         );
-        console.log(res.status);
+        console.log({ res });
         setSignupSuccess("signup successful");
-        useContx.login(res.data.idToken);
+        useContx.login(res.data.idToken, res.data.localId);
         localStorage.setItem("token", res.data.idToken);
-        navigate("/store");
+        id = res.data.localId;
       } catch (e) {
         console.log(e.response.data.error.message);
         setSignupSuccess(e.response.data.error.message);
@@ -76,6 +67,29 @@ const AuthPage = () => {
       emailInputRef.current.value = null;
       passwordInputRef.current.value = null;
     }
+    try {
+      const ress = await axios.get(
+        `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`
+      );
+      console.log({
+        ress,
+        val: `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`,
+      });
+      if (ress.data.length === 0) {
+        const val = await axios.post(
+          `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`,
+          {
+            items: [],
+            totalAmount: 0,
+          }
+        );
+        console.log({ val });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    localStorage.setItem("userid", id);
+    navigate("/store");
   }
 
   return (

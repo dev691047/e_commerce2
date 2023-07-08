@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import classes from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
+import { useStore } from "../../../Store/CartProvide";
+import AuthContext from "../../../Store_Auth/auth-context";
+import { useEffect, useContext } from "react";
+import axios from "axios";
 
 const MealItem = (props) => {
   const price = `$${props.price.toFixed(2)}`;
+  const store = useStore();
+  const authCtx = useContext(AuthContext);
 
   return (
     <div className={classes.div}>

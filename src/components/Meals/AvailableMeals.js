@@ -8,42 +8,44 @@ import { useEffect, useContext } from "react";
 
 const AvailableMeals = () => {
   const store = useStore();
-  const auth = useContext(AuthContext);
+  const authCtx = useContext(AuthContext);
+  const cartuserId = localStorage.getItem("crudUserCartId");
+  const id = localStorage.getItem("userid");
+  const getCartIdCrudCrud = async () => {
+    try {
+      const res = await axios.get(
+        `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`
+      );
+      localStorage.setItem("crudUserCartId", res.data[0]._id);
+    } catch (e) {
+      console.log({ e });
+    }
+  };
 
-  // const updateCartItemToCrudCrud = async () => {
-  //   try {
-  //     console.log({ auth });
-  //     await axios.post(
-  //       `https://crudcrud.com/api/336f4b1d4bf5406883689d6c9fc7865e/${auth.id}`,
-  //       {
-  //         items: store.items,
-  //         totalAmount: store.totalAmount,
-  //       }
-  //     );
-  //   } catch (e) {
-  //     console.log({ e });
-  //   }
-  // };
-  // const getUpdatedCartItemsFromCrudCrud = async () => {
-  //   try {
-  //     await axios
-  //       .get(
-  //         `https://crudcrud.com/api/336f4b1d4bf5406883689d6c9fc7865e/${auth.id}`,
-  //         {}
-  //       )
-  //       .then(function (response) {
-  //         console.log(response.data);
-  //       });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  useEffect(() => {
+    getCartIdCrudCrud();
+  }, []);
 
-  // useEffect(() => {
-  //   updateCartItemToCrudCrud();
-  //   console.log("called");
-  //   getUpdatedCartItemsFromCrudCrud();
-  // }, [store.totalAmount]);
+  const updateCartItemToCrudCrud = async () => {
+    try {
+      if (cartuserId) {
+        const res = await axios.put(
+          `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}/${cartuserId}`,
+          {
+            items: store.items,
+            totalAmount: store.totalAmount,
+          }
+        );
+        console.log({ res });
+      }
+    } catch (e) {
+      console.log({ e });
+    }
+  };
+
+  useEffect(() => {
+    updateCartItemToCrudCrud();
+  }, [store.totalAmount]);
 
   return (
     <section className={classes.Meals}>

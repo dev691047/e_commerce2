@@ -6,11 +6,15 @@ import AuthPage from "./pages/AuthPage";
 
 import Layout from "./components/Layout/Layout";
 import "./App.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "./Store_Auth/auth-context";
+import axios from "axios";
+import { useStore } from "./Store/CartProvide";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
+  const store = useStore();
+
   return (
     <Layout>
       <Routes>

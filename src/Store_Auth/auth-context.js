@@ -28,6 +28,7 @@ export function AuthContextProvider(props) {
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("crudUserCartId");
   };
 
   const contextValue = {
