@@ -29,6 +29,7 @@ export function AuthContextProvider(props) {
     setToken(null);
     localStorage.removeItem("token");
     localStorage.removeItem("crudUserCartId");
+    localStorage.removeItem("userid");
   };
 
   const contextValue = {

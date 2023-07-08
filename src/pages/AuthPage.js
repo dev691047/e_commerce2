@@ -69,15 +69,15 @@ const AuthPage = () => {
     }
     try {
       const ress = await axios.get(
-        `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`
+        `https://crudcrud.com/api/d31e0d015eb542aeafea914fe4ca0f62/${id}`
       );
       console.log({
         ress,
-        val: `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`,
+        val: `https://crudcrud.com/api/d31e0d015eb542aeafea914fe4ca0f62/${id}`,
       });
       if (ress.data.length === 0) {
         const val = await axios.post(
-          `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`,
+          `https://crudcrud.com/api/d31e0d015eb542aeafea914fe4ca0f62/${id}`,
           {
             items: [],
             totalAmount: 0,

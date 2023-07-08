@@ -70,10 +70,12 @@ const Header = (props) => {
             </Link>
           )}
         </div>
-        <HeaderCartButton
-          className={classes.cart}
-          showCart={props.showCartHandler}
-        />
+        {authCtx.isLoggedin && (
+          <HeaderCartButton
+            className={classes.cart}
+            showCart={props.showCartHandler}
+          />
+        )}
       </header>
     </>
   );

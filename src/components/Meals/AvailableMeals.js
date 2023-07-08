@@ -14,9 +14,13 @@ const AvailableMeals = () => {
   const getCartIdCrudCrud = async () => {
     try {
       const res = await axios.get(
-        `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}`
+        `https://crudcrud.com/api/d31e0d015eb542aeafea914fe4ca0f62/${id}`
       );
       localStorage.setItem("crudUserCartId", res.data[0]._id);
+      console.log(res.data[0]);
+      console.log(res.data[0].items);
+      store.items = res.data[0].items;
+      store.totalAmount = res.data[0].totalAmount;
     } catch (e) {
       console.log({ e });
     }
@@ -29,8 +33,10 @@ const AvailableMeals = () => {
   const updateCartItemToCrudCrud = async () => {
     try {
       if (cartuserId) {
+        console.log(id);
+        console.log(cartuserId);
         const res = await axios.put(
-          `https://crudcrud.com/api/8ec81e1ddd3b4e28b9cc71e694d1d6b5/${id}/${cartuserId}`,
+          `https://crudcrud.com/api/d31e0d015eb542aeafea914fe4ca0f62/${id}/${cartuserId}`,
           {
             items: store.items,
             totalAmount: store.totalAmount,
