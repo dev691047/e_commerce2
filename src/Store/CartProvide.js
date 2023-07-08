@@ -1,10 +1,7 @@
 import CartContext from "./cart-context";
-import { useContext, useReducer } from "react";
-
-const defaultCartState = {
-  items: [],
-  totalAmount: 0,
-};
+import { useContext, useEffect, useReducer } from "react";
+import axios from "axios";
+import AuthContext from "../Store_Auth/auth-context";
 
 const DUMMY_Meals = [
   {
@@ -40,7 +37,7 @@ const DUMMY_Meals = [
       "https://img.freepik.com/free-photo/side-view-club-sandwich-with-salted-cucumbers-lemon-olives-round-white-plate_176474-3049.jpg?w=740&t=st=1688627755~exp=1688628355~hmac=818d3664bb917cbaff3504fc8865e0c6517fc230e2b8a3c7317eb37db07257e6",
   },
   {
-    id: "m4",
+    id: "m5",
     name: "Green Bowl",
     // description: "Healthy...and green...",
     price: 18.99,
@@ -48,7 +45,7 @@ const DUMMY_Meals = [
       "https://img.freepik.com/free-photo/fresh-pasta-with-hearty-bolognese-parmesan-cheese-generated-by-ai_188544-9469.jpg?w=1380&t=st=1688627724~exp=1688628324~hmac=b8125c50750980334e0a28d4551f2a98cd58dde45d39548368b8cd64ad274cad",
   },
   {
-    id: "m4",
+    id: "m6",
     name: "Green Bowl",
     // description: "Healthy...and green...",
     price: 18.99,
@@ -57,23 +54,39 @@ const DUMMY_Meals = [
   },
 ];
 
+const defaultCartState = {
+  items: [],
+  totalAmount: 0,
+};
+
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
+    //find index if present in cart already
     let findInd = state.items.findIndex((val) => val.id === action.item.id);
+
     let updatedItems,
       totalItems = state.items;
+    // if we find a existing element present in the cart already
     if (findInd >= 0) {
       let it = state.items[findInd];
       if (it.count) {
         it.count = parseInt(parseInt(it.count) + parseInt(action.item.count));
       } else it.count = parseInt(action.item.count);
       totalItems[findInd] = it;
+      console.log(totalItems[findInd]);
       updatedItems = totalItems;
-    } else updatedItems = [...totalItems, action.item];
+    }
+    // if we dont find a existing element present in the cart already
+    else {
+      updatedItems = [
+        ...totalItems,
+        { id: action.item.id, count: action.item.count },
+      ];
+    }
 
-    let updatedTotalAmount = 0;
     // we have id so we need to identify the name by id
     // so we need to find the price of maens from dummy array by using id
+    let updatedTotalAmount = 0;
     for (let item of updatedItems) {
       let id = item.id;
       let filtered_item = DUMMY_Meals.filter((item) => {
@@ -104,16 +117,17 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = (props) => {
+  const authCtx = useContext(AuthContext);
+  console.log(authCtx.id);
+
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
     defaultCartState
   );
   console.log(props);
 
-  // const [value, setValue] = useState("ritik");
-
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({ type: "ADD", item: item });
+    dispatchCartAction({ type: "ADD", item });
   };
   const removeItemFromCartHandler = (item) => {
     dispatchCartAction({ type: "REMOVE", item: item });

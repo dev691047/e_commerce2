@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../Store_Auth/auth-context";
 
 const AuthPage = () => {
+  const authCtx = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(true);
   const [signupSuccess, setSignupSuccess] = useState("");
   const emailInputRef = useRef();
@@ -32,9 +33,20 @@ const AuthPage = () => {
           }
         );
 
-        useContx.login(reslogin.data.idToken);
+        useContx.login(reslogin.data.idToken, reslogin.data.localId);
         localStorage.setItem("token", reslogin.data.idToken);
-        navigate("/store");
+        try {
+          const ress = await axios.get(
+            `https://crudcrud.com/api/336f4b1d4bf5406883689d6c9fc7865e/${authCtx.id}`
+          );
+          if (ress) {
+            console.log(ress);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+
+        // navigate("/store");
       } catch (e) {
         console.log(e);
         alert(e.response.data.error.message);

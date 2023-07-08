@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Input from "../../UI/Input";
 import classes from "./MealItemForm.module.css";
 import { useStore } from "../../../Store/CartProvide";
-
+import axios from "axios";
+import AuthContext from "../../../Store_Auth/auth-context";
 const MealItemForm = (props) => {
   const store = useStore();
-  // const amountInputRef = useRef();
+  const auth = useContext(AuthContext);
   const [count, setCount] = useState();
-
   const submitHandler = (event) => {
     event.preventDefault();
   };
 
-  const updateItem = () => {
+  const updateItem = async () => {
     store.addItem({ id: props.id, count });
   };
 
